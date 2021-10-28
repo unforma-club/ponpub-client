@@ -1,0 +1,28 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"strict": false,
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": true,
+		"incremental": true,
+		"esModuleInterop": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"jsx": "preserve",
+		"baseUrl": ".",
+		"paths": {
+			"components/*": ["components/*"],
+			"libs/*": ["libs/*"],
+			"styles/*": ["styles/*"],
+			"types/*": ["types/*"],
+			"@ponpub/*": ["node_modules/@ponpub/*"]
+		}
+	},
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "node_modules/@ponpub"],
+	"exclude": ["node_modules"]
+}

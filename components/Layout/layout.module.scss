@@ -1,0 +1,15 @@
+.main {
+    position: relative;
+    min-height: 100vh;
+    margin-left: 0em;
+    transition: margin var(--main-transition), padding var(--main-transition);
+
+    &[data-aside="false"] {
+        padding: 0em 4em 2em 0em;
+        margin-left: 4em;
+    }
+    &[data-aside="true"] {
+        padding: 0em 2em 2em 0em;
+        margin-left: var(--aside-width);
+    }
+}
