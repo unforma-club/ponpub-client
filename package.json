@@ -1,32 +1,32 @@
 {
-	"name": "ponpub-client",
-	"version": "2.0.0-alpha.1",
-	"description": "Ponpub client",
-	"author": "Taufik Oktama <oktamataufik@gmail.com>",
-	"repository": "https://github.com/unforma-club/ponpub-client.git",
-	"homepage": "https://ponpub-demo.unforma.club",
-	"license": "Apache-2.0",
-	"main": "index.js",
-	"private": true,
-	"scripts": {
-		"dev": "next dev --port=3001",
-		"build": "next build",
-		"start": "next start"
-	},
-	"dependencies": {
-		"@ponpub/user": "latest",
-		"axios": "^0.24.0",
-		"next": "^12.0.1",
-		"next-themes": "^0.0.15",
-		"react": "^17.0.2",
-		"react-dom": "^17.0.2",
-		"sass": "^1.43.4",
-		"swr": "^1.0.1"
-	},
-	"devDependencies": {
-		"@types/node": "^16.11.6",
-		"@types/react": "^17.0.33",
-		"@types/react-dom": "^17.0.10",
-		"typescript": "^4.4.4"
-	}
+  "name": "ponpub-client",
+  "version": "2.0.0-alpha.1",
+  "description": "Ponpub client",
+  "author": "Taufik Oktama <oktamataufik@gmail.com>",
+  "repository": "https://github.com/unforma-club/ponpub-client.git",
+  "homepage": "https://ponpub-demo.unforma.club",
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port=3001",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@ponpub/user": "latest",
+    "axios": "^0.24.0",
+    "next": "^12.0.1",
+    "next-themes": "^0.0.15",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "sass": "^1.43.4",
+    "swr": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.6",
+    "@types/react": "^17.0.33",
+    "@types/react-dom": "^17.0.10",
+    "typescript": "^4.4.4"
+  }
 }
