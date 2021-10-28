@@ -1,0 +1,48 @@
+.container {
+    appearance: none;
+    position: relative;
+    font-size: inherit;
+    background: none;
+    border: none;
+    border-radius: calc(var(--grid-gap) / 1.5);
+    width: 1.75em;
+    height: 1.75em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    overflow: hidden;
+
+    transition: background-color var(--main-transition),
+        color var(--main-transition), box-shadow var(--main-transition),
+        transform var(--main-transition);
+
+    &[data-active="false"] {
+        color: var(--accents-6);
+        // background-color: var(--accents-2);
+        // border-color: transparent !important;
+        &:hover {
+            background-color: var(--accents-2);
+            color: var(--accents-8);
+            // box-shadow: 0px 0px 0px 0px var(--accents-3);
+        }
+    }
+    &[data-active="true"] {
+        color: var(--accents-8);
+        // background-color: var(--geist-ufc-color);
+        // border-color: transparent !important;
+        background-color: var(--accents-2);
+    }
+
+    > svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        width: 1.25em;
+        height: 1.25em;
+    }
+}

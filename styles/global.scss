@@ -1,3 +1,5 @@
+@import "./progress-bar.scss";
+
 * {
     box-sizing: border-box;
     border-color: var(--accents-4) !important;
@@ -6,7 +8,8 @@
     -webkit-font-smoothing: antialiased;
 
     svg {
-        fill: var(--accents-8) !important;
+        // fill: var(--accents-8) !important;
+        fill: currentColor;
     }
 
     &::selection {
@@ -26,6 +29,43 @@ pre {
     margin: 0;
 }
 
+a {
+    font-weight: 300;
+    color: currentColor;
+    text-decoration: none;
+    // transition: color var(--main-transition), font-weight var(--main-transition);
+
+    &[target="_blank"] {
+        position: relative;
+    }
+
+    &[data-active="false"] {
+        color: var(--accents-8);
+        font-weight: 400;
+    }
+
+    // &[data-active="true"] {
+    //     font-weight: 700;
+    //     color: currentColor;
+    // }
+
+    &[data-hidden="true"] {
+        color: var(--accents-8);
+    }
+
+    &[data-disable="true"] {
+        pointer-events: none;
+        touch-action: none;
+        cursor: not-allowed !important;
+    }
+
+    &:hover,
+    &[data-active="true"] {
+        font-weight: 700;
+        color: currentColor;
+    }
+}
+
 #__next {
     position: relative;
     min-height: 100vh;
@@ -39,4 +79,32 @@ main {
     background-color: inherit;
     color: inherit;
     font-size: inherit;
+}
+
+.wip {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-size: 6em;
+    color: var(--geist-ufc-color);
+    white-space: nowrap;
+
+    font-feature-settings: "ss04";
+
+    animation: wip-variable 2000ms ease-in-out alternate infinite;
+}
+
+.font-variable {
+    animation: wip-variable 2000ms ease-in-out alternate infinite;
+}
+
+@keyframes wip-variable {
+    0% {
+        font-variation-settings: "wght" 300;
+    }
+    100% {
+        font-variation-settings: "wght" 700;
+    }
 }
