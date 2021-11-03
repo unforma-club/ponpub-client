@@ -14,8 +14,8 @@
     "start": "next start"
   },
   "dependencies": {
-    "@ponpub/font": "latest",
-    "@ponpub/user": "latest",
+    "@ponpub/font": "^1.0.0-alpha.2",
+    "@ponpub/user": "^1.0.1-alpha.3",
     "@react-spring/web": "^9.3.0",
     "@unforma-club/typetools": "latest",
     "axios": "^0.24.0",
