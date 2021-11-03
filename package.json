@@ -14,11 +14,13 @@
     "start": "next start"
   },
   "dependencies": {
+    "@ponpub/font": "latest",
     "@ponpub/user": "latest",
-    "@types/nprogress": "^0.2.0",
-    "@types/opentype.js": "^1.3.3",
-    "@unforma-club/typetools": "^1.0.6",
+    "@react-spring/web": "^9.3.0",
+    "@unforma-club/typetools": "latest",
     "axios": "^0.24.0",
+    "faker": "^5.5.3",
+    "fontfaceobserver": "^2.1.0",
     "next": "^12.0.1",
     "next-themes": "^0.0.15",
     "nprogress": "^0.2.0",
@@ -29,7 +31,11 @@
     "swr": "^1.0.1"
   },
   "devDependencies": {
+    "@types/faker": "^5.5.9",
+    "@types/fontfaceobserver": "^2.1.0",
     "@types/node": "^16.11.6",
+    "@types/nprogress": "^0.2.0",
+    "@types/opentype.js": "^1.3.3",
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
     "typescript": "^4.4.4"

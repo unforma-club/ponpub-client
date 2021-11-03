@@ -1,45 +1,88 @@
 import "styles/global.scss";
-import { AppProps } from "next/app";
-import { useEffect } from "react";
+import App, { AppProps, AppContext } from "next/app";
+import NextHead from "next/head";
+import NextDynamic from "next/dynamic";
 import { ThemeProvider } from "next-themes";
-import nProgress from "nprogress";
+import { PayloadFont } from "@ponpub/font";
 
 import { ProviderAside } from "libs/context/ContextAside";
 import { Aside } from "components/Aside";
+import { Footer } from "components/Footer";
+import { AxiosConfig } from "libs/api/axios-config";
 
-// nProgress.configure({ speed: 100, easing: "ease-in-out", minimum: 0.1 });
+const ProgressBar = NextDynamic(() => import("components/Utils/ProgressBar"), {
+    ssr: false,
+});
 
-export default function MyApp({ Component, pageProps, router }: AppProps) {
-    /**
-     * Run `nProgress` every page changes
-     */
-    useEffect(() => {
-        const handleStart = () => nProgress.start();
-        const handleStop = () => nProgress.done();
+interface MyAppProps extends AppProps {
+    fonts: Array<PayloadFont>;
+}
 
-        router.events.on("routeChangeStart", handleStart);
-        router.events.on("routeChangeComplete", handleStop);
-        router.events.on("routeChangeError", handleStop);
-
-        return () => {
-            router.events.off("routeChangeStart", handleStart);
-            router.events.off("routeChangeComplete", handleStop);
-            router.events.off("routeChangeError", handleStop);
-        };
-    }, [router]);
-
+export default function MyApp(props: MyAppProps) {
+    const { Component, pageProps, fonts } = props;
     return (
         <>
+            <NextHead>
+                {/* {fonts.map((item, i) => (
+                    <link
+                        key={i}
+                        rel="preload"
+                        // as="font"
+                        type="text/css"
+                        href={item.stylesheet.fileUrl}
+                        crossOrigin=""
+                    />
+                ))} */}
+                {/* {fonts.map((item) =>
+                    item.typefaces.map((typeface, i) => (
+                        <link
+                            key={i}
+                            rel="preload"
+                            href={typeface.file.url}
+                            type={typeface.file.type}
+                            as="font"
+                            crossOrigin=""
+                        />
+                    ))
+                )} */}
+                {fonts.map((item, i) => (
+                    <link
+                        key={i}
+                        rel="stylesheet"
+                        type="text/css"
+                        crossOrigin=""
+                        href={item.stylesheet.fileUrl}
+                    />
+                ))}
+            </NextHead>
+
             <ThemeProvider
                 disableTransitionOnChange
                 defaultTheme="system"
-                themes={["dark", "light", "gray"]}
+                themes={["dark", "light", "gray", "mess"]}
             >
+                <ProgressBar />
                 <ProviderAside>
-                    <Aside />
-                    <Component {...pageProps} />
+                    <Aside fonts={fonts} />
+                    <Component {...pageProps} fonts={fonts} />
+                    <Footer />
                 </ProviderAside>
             </ThemeProvider>
         </>
     );
 }
+
+MyApp.getInitialProps = async (appContext: AppContext) => {
+    const { ctx } = appContext;
+    const appProps = await App.getInitialProps(appContext);
+
+    /**
+     * Make sure defer fetching fonts if user not available for avoiding bandwidth load
+     */
+    const fonts = await AxiosConfig(ctx.req).get("/api/v1/post/font");
+
+    return {
+        ...appProps,
+        fonts: fonts.data,
+    };
+};

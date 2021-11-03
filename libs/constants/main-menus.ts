@@ -62,7 +62,7 @@ export const MAIN_MENU: Array<Menus> = [
             },
             {
                 label: "Typeface",
-                icon: "typeface",
+                icon: "format-shapes",
                 link: {
                     href: {
                         pathname: "/post/typeface",
@@ -72,7 +72,7 @@ export const MAIN_MENU: Array<Menus> = [
                 action: {
                     link: {
                         href: {
-                            pathname: "/editor/typeface/input",
+                            pathname: "/editor/typeface/new",
                         },
                     },
                     icon: "add",
@@ -96,7 +96,7 @@ export const MAIN_MENU: Array<Menus> = [
             },
             {
                 label: "Staffs",
-                icon: "supervisor",
+                icon: "verified",
                 link: {
                     href: {
                         pathname: "/staff",
@@ -106,19 +106,19 @@ export const MAIN_MENU: Array<Menus> = [
             },
         ],
     },
-    {
-        group: "Restricted",
-        subMenu: [
-            {
-                label: "Storage",
-                icon: "refresh",
-                link: { href: { pathname: "/storage" } },
-            },
-            {
-                label: "Auth",
-                icon: "refresh",
-                link: { href: { pathname: "/auth" } },
-            },
-        ],
-    },
+    // {
+    //     group: "Restricted",
+    //     subMenu: [
+    //         {
+    //             label: "Storage",
+    //             icon: "verified",
+    //             link: { href: { pathname: "/storage" } },
+    //         },
+    //         {
+    //             label: "Auth",
+    //             icon: "verified",
+    //             link: { href: { pathname: "/auth" } },
+    //         },
+    //     ],
+    // },
 ];

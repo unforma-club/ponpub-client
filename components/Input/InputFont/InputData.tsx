@@ -1,7 +1,7 @@
-import { useFontInput } from "libs/context/ContextFontInput";
+import { useNewFont } from "libs/context/ContextNewFont";
 
 export const InputData = () => {
-    const { typefaces, handleSubmit, setTypefaces } = useFontInput();
+    const { typefaces, handleSubmit, setTypefaces } = useNewFont();
     return (
         <div
             style={{
@@ -19,13 +19,12 @@ export const InputData = () => {
                 >
                     <input
                         type="text"
-                        value={typefaces[0].typefaceFamily}
+                        value={typefaces[0].name.family}
                         placeholder="Family"
                         onChange={(e) =>
                             setTypefaces((prev) => {
                                 prev.forEach((item) => {
-                                    return (item.typefaceFamily =
-                                        e.target.value);
+                                    return (item.name.family = e.target.value);
                                 });
                                 return [...prev];
                             })
@@ -33,12 +32,12 @@ export const InputData = () => {
                     />
                     <input
                         type="text"
-                        value={typefaces[0].typefaceSubFamily}
+                        value={typefaces[0].name.subFamily}
                         placeholder="Sub Family"
                         onChange={(e) =>
                             setTypefaces((prev) => {
                                 prev.forEach((item) => {
-                                    return (item.typefaceSubFamily =
+                                    return (item.name.subFamily =
                                         e.target.value);
                                 });
                                 return [...prev];
@@ -55,15 +54,21 @@ export const InputData = () => {
                     <li
                         key={i}
                         style={{
-                            fontFamily: `${item.typefaceFullName}, var(--font-sans)`,
+                            fontFamily: `${item.name.fullName}, var(--font-sans)`,
+                            fontStyle:
+                                item.info.style === "italic"
+                                    ? "italic"
+                                    : "normal",
+                            fontWeight: item.info.weight,
                         }}
                     >
                         <div
                             style={{
                                 display: "grid",
-                                gridTemplateColumns: "2fr 2fr 1fr 1fr",
+                                gridTemplateColumns: "repeat(5, 1fr)",
                                 alignItems: "center",
                                 gap: "var(--grid-gap)",
+                                fontSize: "1.3em",
                             }}
                         >
                             <span
@@ -74,7 +79,7 @@ export const InputData = () => {
                                     textOverflow: "ellipsis",
                                 }}
                             >
-                                {item.typefaceFamily}
+                                {item.name.family}
                             </span>
                             <span
                                 style={{
@@ -84,12 +89,41 @@ export const InputData = () => {
                                     textOverflow: "ellipsis",
                                 }}
                             >
-                                {item.typefaceFullName}
+                                {item.name.subFamily
+                                    ? item.name.subFamily
+                                    : "-"}
                             </span>
-                            <span>
-                                {item.typefaceVariable ? "Variable" : "-"}
+                            <span
+                                style={{
+                                    display: "block",
+                                    whiteSpace: "nowrap",
+                                    overflow: "hidden",
+                                    textOverflow: "ellipsis",
+                                }}
+                            >
+                                {item.name.shortName}{" "}
+                                {item.variable && " - Var"}
                             </span>
-                            <span>{item.typefaceWeight}</span>
+                            <span
+                                style={{
+                                    display: "block",
+                                    whiteSpace: "nowrap",
+                                    overflow: "hidden",
+                                    textOverflow: "ellipsis",
+                                }}
+                            >
+                                {item.info.weight}
+                            </span>
+                            <span
+                                style={{
+                                    display: "block",
+                                    whiteSpace: "nowrap",
+                                    overflow: "hidden",
+                                    textOverflow: "ellipsis",
+                                }}
+                            >
+                                {item.file.name}
+                            </span>
                         </div>
                     </li>
                 ))}

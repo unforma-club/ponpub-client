@@ -5,11 +5,12 @@
     transition: margin var(--main-transition), padding var(--main-transition);
 
     &[data-aside="false"] {
-        padding: 0em 4em 2em 0em;
-        margin-left: 4em;
+        // padding: 0em calc(var(--grid-gap) * 1) calc(var(--grid-gap) * 3.25) 0em;
+        padding: 0 var(--grid-gap);
+        // margin-left: 3em;
     }
     &[data-aside="true"] {
-        padding: 0em 2em 2em 0em;
+        padding: 0em calc(var(--grid-gap) * 2) 1.2em 0em;
         margin-left: var(--aside-width);
     }
 }

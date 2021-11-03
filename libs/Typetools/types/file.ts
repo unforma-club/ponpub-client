@@ -1,7 +1,7 @@
-export interface FileReaderOutput {
-	fileName: string;
-	fileSize: number;
-	fileType: string;
-	fileUrl: string;
-	fileDestination: string;
+export interface FileOutput {
+    name: string;
+    size: number;
+    type: string;
+    url: string;
+    destination: string;
 }

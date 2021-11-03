@@ -1,19 +1,19 @@
 import { LayoutMain } from "components/Layout";
 import {
-    ConsumerFontInput,
     ProviderFontInput,
-} from "libs/context/ContextFontInput";
+    ConsumerNewFont,
+} from "libs/context/ContextNewFont";
 import { InputFont, InputData } from "components/Input";
 
 export default function Page() {
     return (
         <LayoutMain title="Editor Input">
             <ProviderFontInput>
-                <ConsumerFontInput>
+                <ConsumerNewFont>
                     {({ typefaces }) =>
                         typefaces.length === 0 ? <InputFont /> : <InputData />
                     }
-                </ConsumerFontInput>
+                </ConsumerNewFont>
             </ProviderFontInput>
         </LayoutMain>
     );

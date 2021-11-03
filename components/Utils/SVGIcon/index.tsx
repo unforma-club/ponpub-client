@@ -1,11 +1,13 @@
 export type IconType =
     | "add"
+    | "add-circle"
     | "check"
     | "chevron-right"
     | "description"
     | "delete"
     | "expand-more"
     | "expand-less"
+    | "format-shapes"
     | "goods"
     | "groups"
     | "people"
@@ -19,6 +21,7 @@ export type IconType =
     | "supervisor"
     | "tune"
     | "typeface"
+    | "verified"
     | "view-list"
     | "view-grid"
     | "visibility"
@@ -36,11 +39,29 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    width="24px"
-                    height="24px"
+                    width="1.25em"
+                    height="1.25em"
                     fill="currentColor"
                 >
                     <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                </svg>
+            );
+
+        case "add-circle":
+            return (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="1.25em"
+                    height="1.25em"
+                    fill="currentColor"
+                >
+                    <path d="M0 0h24v24H0V0z" fill="none" />
+                    <path
+                        d="M12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8zm5 9h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"
+                        opacity=".3"
+                    />
+                    <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
                 </svg>
             );
 
@@ -49,8 +70,8 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    width="24px"
-                    height="24px"
+                    width="1.25em"
+                    height="1.25em"
                     fill="currentColor"
                 >
                     <path d="M0 0h24v24H0V0z" fill="none" />
@@ -63,8 +84,8 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    height="28px"
-                    width="28px"
+                    height="1.25em"
+                    width="1.25em"
                     fill="currentColor"
                 >
                     <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z" />
@@ -76,8 +97,8 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    height="24px"
-                    width="24px"
+                    height="1.25em"
+                    width="1.25em"
                     fill="currentColor"
                 >
                     <path d="M0 0h24v24H0V0z" fill="none" />
@@ -90,11 +111,15 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    height="24px"
-                    width="24px"
+                    height="1.25em"
+                    width="1.25em"
                     fill="currentColor"
                 >
                     <path d="M0 0h24v24H0V0z" fill="none" />
+                    <path
+                        d="M13 4H6v16h12V9h-5V4zm3 14H8v-2h8v2zm0-6v2H8v-2h8z"
+                        opacity=".3"
+                    />
                     <path d="M8 16h8v2H8zm0-4h8v2H8zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z" />
                 </svg>
             );
@@ -104,8 +129,8 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    height="24px"
-                    width="24px"
+                    height="1.25em"
+                    width="1.25em"
                     fill="currentColor"
                 >
                     <path d="M0 0h24v24H0V0z" fill="none" />
@@ -118,12 +143,30 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    height="24px"
-                    width="24px"
+                    height="1.25em"
+                    width="1.25em"
                     fill="currentColor"
                 >
                     <path d="M24 24H0V0h24v24z" fill="none" opacity=".87" />
                     <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z" />
+                </svg>
+            );
+
+        case "format-shapes":
+            return (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    height="1.25em"
+                    width="1.25em"
+                    fill="currentColor"
+                >
+                    <path d="M0 0h24v24H0V0z" fill="none" />
+                    <path
+                        d="M3 3h2v2H3zm16 16h2v2h-2zm0-16h2v2h-2zM3 19h2v2H3z"
+                        opacity=".3"
+                    />
+                    <path d="M11.29 7l-3.4 9h1.62l.73-2h3.49l.74 2h1.63l-3.41-9h-1.4zm-.6 5.74L12 8.91l1.3 3.83h-2.61zM17 3H7V1H1v6h2v10H1v6h6v-2h10v2h6v-6h-2V7h2V1h-6v2zM3 3h2v2H3V3zm2 18H3v-2h2v2zm16 0h-2v-2h2v2zM19 3h2v2h-2V3zm0 14h-2v2H7v-2H5V7h2V5h10v2h2v10z" />
                 </svg>
             );
 
@@ -132,8 +175,8 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    height="24px"
-                    width="24px"
+                    height="1.25em"
+                    width="1.25em"
                     fill="currentColor"
                 >
                     <rect fill="none" height="24" width="24" />
@@ -145,13 +188,19 @@ export const SVGIcon = ({ type }: SVGIconType) => {
             return (
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
+                    enableBackground="new 0 0 24 24"
                     viewBox="0 0 24 24"
-                    height="24px"
-                    width="24px"
+                    height="1.25em"
+                    width="1.25em"
                     fill="currentColor"
                 >
                     <rect fill="none" height="24" width="24" />
-                    <path d="M4,13c1.1,0,2-0.9,2-2c0-1.1-0.9-2-2-2s-2,0.9-2,2C2,12.1,2.9,13,4,13z M5.13,14.1C4.76,14.04,4.39,14,4,14 c-0.99,0-1.93,0.21-2.78,0.58C0.48,14.9,0,15.62,0,16.43V18l4.5,0v-1.61C4.5,15.56,4.73,14.78,5.13,14.1z M20,13c1.1,0,2-0.9,2-2 c0-1.1-0.9-2-2-2s-2,0.9-2,2C18,12.1,18.9,13,20,13z M24,16.43c0-0.81-0.48-1.53-1.22-1.85C21.93,14.21,20.99,14,20,14 c-0.39,0-0.76,0.04-1.13,0.1c0.4,0.68,0.63,1.46,0.63,2.29V18l4.5,0V16.43z M16.24,13.65c-1.17-0.52-2.61-0.9-4.24-0.9 c-1.63,0-3.07,0.39-4.24,0.9C6.68,14.13,6,15.21,6,16.39V18h12v-1.61C18,15.21,17.32,14.13,16.24,13.65z M8.07,16 c0.09-0.23,0.13-0.39,0.91-0.69c0.97-0.38,1.99-0.56,3.02-0.56s2.05,0.18,3.02,0.56c0.77,0.3,0.81,0.46,0.91,0.69H8.07z M12,8 c0.55,0,1,0.45,1,1s-0.45,1-1,1s-1-0.45-1-1S11.45,8,12,8 M12,6c-1.66,0-3,1.34-3,3c0,1.66,1.34,3,3,3s3-1.34,3-3 C15,7.34,13.66,6,12,6L12,6z" />
+                    <g opacity=".3">
+                        <path d="M8.07,16c0.09-0.23,0.13-0.39,0.91-0.69c0.97-0.38,1.99-0.56,3.02-0.56s2.05,0.18,3.02,0.56c0.77,0.3,0.81,0.46,0.91,0.69 H8.07z M12,8c0.55,0,1,0.45,1,1s-0.45,1-1,1s-1-0.45-1-1S11.45,8,12,8" />
+                    </g>
+                    <g>
+                        <path d="M4,13c1.1,0,2-0.9,2-2c0-1.1-0.9-2-2-2s-2,0.9-2,2C2,12.1,2.9,13,4,13z M5.13,14.1C4.76,14.04,4.39,14,4,14 c-0.99,0-1.93,0.21-2.78,0.58C0.48,14.9,0,15.62,0,16.43V18l4.5,0v-1.61C4.5,15.56,4.73,14.78,5.13,14.1z M20,13c1.1,0,2-0.9,2-2 c0-1.1-0.9-2-2-2s-2,0.9-2,2C18,12.1,18.9,13,20,13z M24,16.43c0-0.81-0.48-1.53-1.22-1.85C21.93,14.21,20.99,14,20,14 c-0.39,0-0.76,0.04-1.13,0.1c0.4,0.68,0.63,1.46,0.63,2.29V18l4.5,0V16.43z M16.24,13.65c-1.17-0.52-2.61-0.9-4.24-0.9 c-1.63,0-3.07,0.39-4.24,0.9C6.68,14.13,6,15.21,6,16.39V18h12v-1.61C18,15.21,17.32,14.13,16.24,13.65z M8.07,16 c0.09-0.23,0.13-0.39,0.91-0.69c0.97-0.38,1.99-0.56,3.02-0.56s2.05,0.18,3.02,0.56c0.77,0.3,0.81,0.46,0.91,0.69H8.07z M12,8 c0.55,0,1,0.45,1,1s-0.45,1-1,1s-1-0.45-1-1S11.45,8,12,8 M12,6c-1.66,0-3,1.34-3,3c0,1.66,1.34,3,3,3s3-1.34,3-3 C15,7.34,13.66,6,12,6L12,6z" />
+                    </g>
                 </svg>
             );
 
@@ -160,8 +209,8 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    height="24px"
-                    width="24px"
+                    height="1.25em"
+                    width="1.25em"
                     fill="currentColor"
                 >
                     <path d="M0 0h24v24H0V0z" fill="none" />
@@ -174,8 +223,8 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    height="24px"
-                    width="24px"
+                    height="1.25em"
+                    width="1.25em"
                     fill="currentColor"
                 >
                     <path d="M0 0h24v24H0V0z" fill="none" />
@@ -188,8 +237,8 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    height="24px"
-                    width="24px"
+                    height="1.25em"
+                    width="1.25em"
                     fill="currentColor"
                 >
                     <path d="M6,13c0-1.65,0.67-3.15,1.76-4.24L6.34,7.34C4.9,8.79,4,10.79,4,13c0,4.08,3.05,7.44,7,7.93v-2.02 C8.17,18.43,6,15.97,6,13z M20,13c0-4.42-3.58-8-8-8c-0.06,0-0.12,0.01-0.18,0.01l1.09-1.09L11.5,2.5L8,6l3.5,3.5l1.41-1.41 l-1.08-1.08C11.89,7.01,11.95,7,12,7c3.31,0,6,2.69,6,6c0,2.97-2.17,5.43-5,5.91v2.02C16.95,20.44,20,17.08,20,13z" />
@@ -201,8 +250,8 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    height="20px"
-                    width="20px"
+                    height="1.25em"
+                    width="1.25em"
                     fill="currentColor"
                 >
                     <path d="M12,5V1L7,6l5,5V7c3.31,0,6,2.69,6,6s-2.69,6-6,6s-6-2.69-6-6H4c0,4.42,3.58,8,8,8s8-3.58,8-8S16.42,5,12,5z" />
@@ -214,8 +263,8 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    height="20px"
-                    width="20px"
+                    height="1.25em"
+                    width="1.25em"
                     fill="currentColor"
                 >
                     <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
@@ -227,8 +276,8 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    height="24px"
-                    width="24px"
+                    height="1.25em"
+                    width="1.25em"
                     fill="currentColor"
                 >
                     <path d="M0 0h24v24H0V0z" fill="none" />
@@ -241,12 +290,13 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    height="24px"
-                    width="24px"
+                    height="1.25em"
+                    width="1.25em"
                     fill="currentColor"
                 >
                     <path d="M0 0h24v24H0V0z" fill="none" />
-                    <path d="M18.36 9l.6 3H5.04l.6-3h12.72M20 4H4v2h16V4zm0 3H4l-1 5v2h1v6h10v-6h4v6h2v-6h1v-2l-1-5zM6 18v-4h6v4H6z" />
+                    <path d="M5.64 9l-.6 3h13.92l-.6-3z" opacity=".3" />
+                    <path d="M4 4h16v2H4zm16 3H4l-1 5v2h1v6h10v-6h4v6h2v-6h1v-2l-1-5zm-8 11H6v-4h6v4zm-6.96-6l.6-3h12.72l.6 3H5.04z" />
                 </svg>
             );
 
@@ -255,8 +305,8 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    height="24px"
-                    width="24px"
+                    height="1.25em"
+                    width="1.25em"
                     fill="currentColor"
                 >
                     <path d="M0 0h24v24H0V0z" fill="none" />
@@ -270,11 +320,16 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    height="24px"
-                    width="24px"
+                    height="1.25em"
+                    width="1.25em"
                     fill="currentColor"
                 >
                     <path d="M0 0h24v24H0V0z" fill="none" />
+                    <circle cx="9" cy="8.5" opacity=".3" r="1.5" />
+                    <path
+                        d="M4.77 17h4.28c.01-.06.12-.58.29-.99-.11 0-.23-.01-.34-.01-1.53 0-3.25.5-4.23 1z"
+                        opacity=".3"
+                    />
                     <path d="M9 12c1.93 0 3.5-1.57 3.5-3.5S10.93 5 9 5 5.5 6.57 5.5 8.5 7.07 12 9 12zm0-5c.83 0 1.5.67 1.5 1.5S9.83 10 9 10s-1.5-.67-1.5-1.5S8.17 7 9 7zm.05 10H4.77c.99-.5 2.7-1 4.23-1 .11 0 .23.01.34.01.34-.73.93-1.33 1.64-1.81-.73-.13-1.42-.2-1.98-.2-2.34 0-7 1.17-7 3.5V19h7v-1.5c0-.17.02-.34.05-.5zm7.45-2.5c-1.84 0-5.5 1.01-5.5 3V19h11v-1.5c0-1.99-3.66-3-5.5-3zm1.21-1.82c.76-.43 1.29-1.24 1.29-2.18C19 9.12 17.88 8 16.5 8S14 9.12 14 10.5c0 .94.53 1.75 1.29 2.18.36.2.77.32 1.21.32s.85-.12 1.21-.32z" />
                 </svg>
             );
@@ -284,8 +339,8 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    height="24px"
-                    width="24px"
+                    height="1.25em"
+                    width="1.25em"
                     fill="currentColor"
                 >
                     <path d="M0 0h24v24H0V0z" fill="none" />
@@ -298,12 +353,38 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    height="24px"
-                    width="24px"
+                    height="1.25em"
+                    width="1.25em"
                     fill="currentColor"
                 >
                     <path d="M0 0h24v24H0V0z" fill="none" />
                     <path d="M9 4v3h5v12h3V7h5V4H9zm-6 8h3v7h3v-7h3V9H3v3z" />
+                </svg>
+            );
+
+        case "verified":
+            return (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    enableBackground="new 0 0 24 24"
+                    viewBox="0 0 24 24"
+                    height="1.25em"
+                    width="1.25em"
+                    fill="currentColor"
+                >
+                    <g>
+                        <rect fill="none" height="24" width="24" />
+                    </g>
+                    <g>
+                        <g>
+                            <path
+                                d="M18.49,9.88l0.08-0.85l0.18-1.95l-1.9-0.43l-0.84-0.19l-0.44-0.74l-0.99-1.68L12.79,4.8L12,5.14L11.21,4.8 L9.42,4.03L8.43,5.71L7.99,6.45L7.15,6.64l-1.9,0.43l0.18,1.94l0.08,0.85l-0.56,0.65l-1.29,1.48l1.29,1.47l0.56,0.65l-0.08,0.85 l-0.18,1.96l1.9,0.43l0.84,0.19l0.44,0.74l0.99,1.67l1.78-0.77L12,18.85l0.79,0.34l1.78,0.77l0.99-1.68l0.44-0.74l0.84-0.19 l1.9-0.43l-0.18-1.95l-0.08-0.85l0.56-0.65l1.29-1.47l-1.29-1.47L18.49,9.88z M10.09,16.72l-3.8-3.81l1.48-1.48l2.32,2.33 l5.85-5.87l1.48,1.48L10.09,16.72z"
+                                opacity=".3"
+                            />
+                            <path d="M23,11.99l-2.44-2.79l0.34-3.69l-3.61-0.82L15.4,1.5L12,2.96L8.6,1.5L6.71,4.69L3.1,5.5L3.44,9.2L1,11.99l2.44,2.79 l-0.34,3.7l3.61,0.82L8.6,22.5l3.4-1.47l3.4,1.46l1.89-3.19l3.61-0.82l-0.34-3.69L23,11.99z M19.05,13.47l-0.56,0.65l0.08,0.85 l0.18,1.95l-1.9,0.43l-0.84,0.19l-0.44,0.74l-0.99,1.68l-1.78-0.77L12,18.85l-0.79,0.34l-1.78,0.77l-0.99-1.67l-0.44-0.74 l-0.84-0.19l-1.9-0.43l0.18-1.96l0.08-0.85l-0.56-0.65l-1.29-1.47l1.29-1.48l0.56-0.65L5.43,9.01L5.25,7.07l1.9-0.43l0.84-0.19 l0.44-0.74l0.99-1.68l1.78,0.77L12,5.14l0.79-0.34l1.78-0.77l0.99,1.68l0.44,0.74l0.84,0.19l1.9,0.43l-0.18,1.95l-0.08,0.85 l0.56,0.65l1.29,1.47L19.05,13.47z" />
+                            <polygon points="10.09,13.75 7.77,11.42 6.29,12.91 10.09,16.72 17.43,9.36 15.95,7.87" />
+                        </g>
+                    </g>
                 </svg>
             );
 
@@ -312,8 +393,8 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    width="24px"
-                    height="24px"
+                    width="1.25em"
+                    height="1.25em"
                     fill="currentColor"
                 >
                     <path d="M8 4h13v2H8V4zm-5-.5h3v3H3v-3zm0 7h3v3H3v-3zm0 7h3v3H3v-3zM8 11h13v2H8v-2zm0 7h13v2H8v-2z" />
@@ -325,8 +406,8 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    width="24px"
-                    height="24px"
+                    width="1.25em"
+                    height="1.25em"
                     fill="currentColor"
                 >
                     <path d="M3,3v8h8V3H3z M9,9H5V5h4V9z M3,13v8h8v-8H3z M9,19H5v-4h4V19z M13,3v8h8V3H13z M19,9h-4V5h4V9z M13,13v8h8v-8H13z M19,19h-4v-4h4V19z" />
@@ -338,8 +419,8 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    width="24px"
-                    height="24px"
+                    width="1.25em"
+                    height="1.25em"
                     fill="currentColor"
                 >
                     <path d="M0 0h24v24H0V0z" fill="none" />
@@ -352,8 +433,8 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    width="24px"
-                    height="24px"
+                    width="1.25em"
+                    height="1.25em"
                     fill="currentColor"
                 >
                     <path d="M0 0h24v24H0V0z" fill="none" />
@@ -366,8 +447,8 @@ export const SVGIcon = ({ type }: SVGIconType) => {
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    width="24px"
-                    height="24px"
+                    width="1.25em"
+                    height="1.25em"
                     fill="currentColor"
                 >
                     <path d="M24 0v24H0V0h24z" fill="none" opacity=".87" />

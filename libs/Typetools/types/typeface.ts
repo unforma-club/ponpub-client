@@ -1,6 +1,3 @@
-import { FileReaderOutput } from "./file";
-import { NewGlyph } from "../typetools";
-
 export interface VariableAxes {
     defaultValue: number;
     max: number;
@@ -21,85 +18,51 @@ export interface VariableFont {
     instances: Array<VariableInstance> | null;
 }
 
-export type FontStyle = "roman" | "italic";
-export type FontFamily = string;
-export type FontSubFamily = string;
-
-interface FontInfoNesting {
+interface KeyValue {
     value: string;
     url: string;
 }
-export interface FontInfo {
-    copyright: string;
-    trademark: string;
-    version: string;
-    designer: FontInfoNesting;
-    license: FontInfoNesting;
-    manufacturer: FontInfoNesting;
-}
 
-export interface FontMedia {
-    cover: Array<string>;
-    speciment: {
+export interface BaseTypeface {
+    file: {
         name: string;
+        size: number;
+        type: string;
         url: string;
+        destination: string;
     };
-}
-
-export interface FontAnatomy {
-    ascender: number;
-    baseline: number;
-    capheight: number;
-    descender: number;
-    xheight: number;
-}
-
-export interface FontPrice {
-    priceBase: number;
-    priceCut: number;
-}
-
-export interface TypefaceMetrics {
-    unitsPerEm: number;
-    usWinAscent: any;
-    usWinDescent: any;
-    sTypoAscender: any;
-    sTypoDescender: any;
-    descender: any;
-    ascender: any;
-    xHeight: any;
-    capHeight: any;
-    baseLine: number;
-    xMax: number;
-    xMin: number;
-    yMax: number;
-    yMin: number;
-}
-
-interface TypefaceFeature {
-    tag: string;
-    features: Array<unknown>;
-}
-
-export interface BaseTypeface extends FileReaderOutput {
-    typefaceFamily: FontFamily;
-    typefaceSubFamily: FontSubFamily;
-    typefaceFullName: string;
-    typefaceShortName: string;
-    typefaceStyle: FontStyle;
-    typefaceWeight: number;
-    typefaceFeatures: Array<TypefaceFeature>;
-    typefaceVariable: VariableFont | null;
-    typefaceInfo: FontInfo;
-    typefaceTables: Array<string>;
-    typefaceMetrics: TypefaceMetrics;
-    glyphs: Array<NewGlyph>;
-}
-
-export interface Typeface extends BaseTypeface {
-    typefaceAnatomy: FontAnatomy;
-    typefacePrice: FontPrice;
-    typefaceDefault: boolean;
-    typefaceCategory: string;
-    sampleText: string;
+    variable: VariableFont | null;
+    name: {
+        family: string;
+        subFamily: string;
+        fullName: string;
+        shortName: string;
+    };
+    info: {
+        copyright: string;
+        trademark: string;
+        version: string;
+        designer: KeyValue;
+        license: KeyValue;
+        manufacturer: KeyValue;
+        tables: Array<string>;
+        style: string;
+        weight: number;
+        metrics: {
+            unitsPerEm: number;
+            usWinAscent: number;
+            usWinDescent: number;
+            sTypoAscender: number;
+            sTypoDescender: number;
+            descender: number;
+            ascender: number;
+            xHeight: number;
+            capHeight: number;
+            baseLine: number;
+            xMax: number;
+            xMin: number;
+            yMax: number;
+            yMin: number;
+        };
+    };
 }

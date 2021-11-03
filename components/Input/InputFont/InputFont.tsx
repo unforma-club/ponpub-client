@@ -1,11 +1,12 @@
+import styles from "./input.module.scss";
 import type { DragEvent } from "react";
 import { useEffect, useRef, useState } from "react";
-import { useFontInput } from "libs/context/ContextFontInput";
+import { useNewFont } from "libs/context/ContextNewFont";
 
 type DragEventProps = DragEvent<HTMLFormElement>;
 
 export const InputFont = () => {
-    const { addTypefaces } = useFontInput();
+    const { addTypefaces } = useNewFont();
 
     const inputRef = useRef<HTMLInputElement>(null);
     const [isDragOver, setDragOver] = useState<boolean>(false);
@@ -38,41 +39,47 @@ export const InputFont = () => {
     }, []);
 
     return (
-        <div>
-            <form
-                data-drag={isDragOver}
-                onDrop={onDrop}
-                onDragOver={onDragOver}
-                onDragEnter={onDragEnter}
-                onDragLeave={onDragLeave}
+        <form
+            data-drag={isDragOver}
+            onDrop={onDrop}
+            onDragOver={onDragOver}
+            onDragEnter={onDragEnter}
+            onDragLeave={onDragLeave}
+            className={styles.container}
+        >
+            <label
+                style={{
+                    fontFeatureSettings: `"ss01", "ss04", "case"`,
+                    textTransform: "uppercase",
+                    fontWeight: "bold",
+                }}
             >
-                <label>
-                    <div>
-                        {isDrop ? (
-                            <>Uploading...</>
-                        ) : (
-                            <>
-                                Drop (.otf, .ttf)
-                                <br /> or Click here...
-                            </>
-                        )}
-                    </div>
-                    <input
-                        ref={inputRef}
-                        type="file"
-                        multiple
-                        accept=".otf, .ttf"
-                        // style={{ display: "none" }}
-                        disabled={isDrop}
-                        onChange={(e) => {
-                            const files = e.target.files;
-                            if (!files)
-                                throw new Error("Font files must be defined");
-                            addTypefaces(files);
-                        }}
-                    />
-                </label>
-            </form>
-        </div>
+                <div>
+                    {isDrop ? (
+                        <>Reading...</>
+                    ) : (
+                        <>
+                            Drop [otf/ttf]
+                            <br /> or Click here...
+                        </>
+                    )}
+                </div>
+                <input
+                    ref={inputRef}
+                    type="file"
+                    multiple
+                    accept=".otf, .ttf"
+                    style={{ display: "none" }}
+                    disabled={isDrop}
+                    onChange={(e) => {
+                        setDrop(true);
+                        const files = e.target.files;
+                        if (!files)
+                            throw new Error("Font files must be defined");
+                        addTypefaces(files);
+                    }}
+                />
+            </label>
+        </form>
     );
 };
