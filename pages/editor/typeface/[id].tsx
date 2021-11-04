@@ -25,6 +25,14 @@ const FONT_URI = "/api/v1/post/font";
 
 const waterFall = [16, 20, 24, 30, 36, 48, 56, 72, 80, 96, 100];
 
+const divStyle: CSSProperties = {
+    border: "1px solid",
+    // boxShadow: "0 0 0.45em -0.05em var(--shadow-color)",
+    padding: "0 calc(var(--grid-gap) / 1)",
+    filter: "var(--filter-shadow)",
+    backgroundColor: "var(--accents-1)",
+};
+
 export default function Page(props: PageProps) {
     const { font } = props;
     const { typefaces } = font;
@@ -74,13 +82,10 @@ export default function Page(props: PageProps) {
                                         style={{
                                             border: "1px solid",
                                             height: "calc(var(--grid-gap) * 4)",
-                                            boxShadow:
-                                                "0 0 0.45em -0.05em var(--shadow-color)",
                                             display: "inline-flex",
                                             alignItems: "center",
-                                            padding: "0 var(--grid-gap)",
-                                            backgroundColor: "var(--accents-1)",
                                             fontFeatureSettings: `"ss01", "ss04", "tnum"`,
+                                            ...divStyle,
                                         }}
                                     >
                                         <span>{item.label}</span>
@@ -103,12 +108,6 @@ export default function Page(props: PageProps) {
                     }}
                 >
                     {typefaces.map((item, i) => {
-                        const divStyle: CSSProperties = {
-                            border: "1px solid",
-                            boxShadow: "0 0 0.45em -0.05em var(--shadow-color)",
-                            padding: "0 calc(var(--grid-gap) / 1)",
-                        };
-
                         const mergeArray = waterFall.map((source) => {
                             return {
                                 size: source,
@@ -138,10 +137,7 @@ export default function Page(props: PageProps) {
                                     style={{
                                         fontFamily: `"${item.name.fullName}", var(--font-sans)`,
                                         display: "inline-flex",
-                                        border: "1px solid",
-                                        padding: "0 calc(var(--grid-gap) / 1)",
-                                        boxShadow:
-                                            "0 0 0.45em -0.05em var(--shadow-color)",
+                                        ...divStyle,
                                     }}
                                 >
                                     <span style={{ fontSize: "2em" }}>

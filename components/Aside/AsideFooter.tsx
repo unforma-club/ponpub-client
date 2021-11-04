@@ -33,6 +33,7 @@ const SelectorTheme = () => {
             <button
                 style={{ ...buttonStyle }}
                 onClick={() => setState((prev) => !prev)}
+                name="Theme"
                 // onMouseEnter={() => setState(true)}
                 // onMouseLeave={() => setState(false)}
             >
@@ -78,6 +79,8 @@ export const AsideFooter = () => {
                     data-active={state}
                     className={styles.toggle}
                     onClick={() => setState((prev) => !prev)}
+                    name="Settings"
+                    title="Settings"
                 >
                     <SVGIcon type="settings" />
                 </button>

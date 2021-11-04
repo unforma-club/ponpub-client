@@ -32,7 +32,7 @@ const ProgressBar = () => {
                 left: 0;
                 right: 0;
                 overflow: hidden;
-                height: calc(var(--grid-gap) / 6);
+                height: calc(var(--grid-gap) / 4);
                 touch-action: none;
                 background-color: var(--accents-1);
             }
