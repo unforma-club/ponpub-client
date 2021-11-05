@@ -5,6 +5,7 @@ import NextDynamic from "next/dynamic";
 import { ThemeProvider } from "next-themes";
 import { PayloadFont } from "@ponpub/font";
 
+import { ProviderFontData } from "libs/context/ContextFontData";
 import { ProviderAside } from "libs/context/ContextAside";
 import { Aside } from "components/Aside";
 import { Footer } from "components/Footer";
@@ -62,11 +63,13 @@ export default function MyApp(props: MyAppProps) {
                 themes={["dark", "light", "gray", "mess"]}
             >
                 <ProgressBar />
-                <ProviderAside>
-                    <Aside fonts={fonts} />
-                    <Component {...pageProps} fonts={fonts} />
-                    <Footer />
-                </ProviderAside>
+                <ProviderFontData fonts={fonts}>
+                    <ProviderAside>
+                        <Aside />
+                        <Component {...pageProps} fonts={fonts} />
+                        <Footer />
+                    </ProviderAside>
+                </ProviderFontData>
             </ThemeProvider>
         </>
     );

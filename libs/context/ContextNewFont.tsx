@@ -219,7 +219,6 @@ export const ProviderFontInput: FC = ({ children }) => {
             .then((res) => console.log(res.data))
             .catch((err) => console.error(err));
 
-        nProgress.done().remove();
         push("/post/typeface", "/post/typeface?view=grid&publish=true");
     }, [typefaces, files]);
 

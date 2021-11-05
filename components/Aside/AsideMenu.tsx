@@ -1,15 +1,10 @@
 import styles from "./menu.module.scss";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
-import { PayloadFont } from "@ponpub/font";
 import { IconType } from "components/Utils/SVGIcon";
 import dummyBlog from "libs/dummyBlog.json";
 import dummyGoods from "libs/dummyGoods.json";
-// import { CSSProperties } from "react";
-
-interface AsideMenuProps {
-    fonts: PayloadFont[];
-}
+import { useFontData } from "libs/context/ContextFontData";
 
 interface Menu {
     label: string;
@@ -137,8 +132,9 @@ interface MainMenu {
 //     );
 // };
 
-export const AsideMenu = ({ fonts }: AsideMenuProps) => {
+export const AsideMenu = () => {
     const { pathname, asPath } = useRouter();
+    const { fonts } = useFontData();
 
     const newMenus: Array<MainMenu> = [
         {

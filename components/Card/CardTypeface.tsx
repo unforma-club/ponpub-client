@@ -1,53 +1,12 @@
-import type { CSSProperties } from "react";
 import type { PayloadFont } from "@ponpub/font";
-
-import axios from "axios";
 import NextLink from "next/link";
-import { useSWRConfig } from "swr";
-import { useRouter } from "next/router";
+import { generateFontStyle } from "libs/helpers/generate-font-style";
 
 interface CardTypefaceProps {
     font: PayloadFont;
 }
 
-const buttonStyle: CSSProperties = {
-    appearance: "none",
-    background: "none",
-    border: "1px solid",
-    // fontSize: "inherit",
-    fontFamily: "inherit",
-    color: "currentcolor",
-};
-
 export const CardTypeface = ({ font }: CardTypefaceProps) => {
-    const fontURI = "/api/v1/post/font";
-    const { push } = useRouter();
-    const { mutate } = useSWRConfig();
-
-    const customFont: CSSProperties = {
-        fontFamily: `${font.default.name.fullName}, var(--font-sans)`,
-        fontStyle: font.default.info.style === "italic" ? "italic" : "normal",
-        fontWeight: font.default.info.weight,
-    };
-    const handleDelete = async (item: PayloadFont) => {
-        await axios
-            // @ts-ignore
-            .delete(`/api/v1/content/css/${item.stylesheet.id}`)
-            .then((res) => console.log(res.data))
-            .catch((err) => console.log(err));
-
-        await axios
-            .post(`/api/v1/content/typeface/delete`, item.typefaces)
-            .then((res) => console.log(res.data))
-            .catch((err) => console.log(err));
-
-        await axios
-            .delete(`/api/v1/post/font/${item.id}`)
-            .then((res) => console.log(res.data))
-            .catch((err) => console.log(err));
-
-        await mutate(fontURI);
-    };
     return (
         <li
             style={{
@@ -110,26 +69,6 @@ export const CardTypeface = ({ font }: CardTypefaceProps) => {
                         {font.subFamily ? font.subFamily : "-"}
                     </span>
                 </div>
-
-                <div>
-                    <button
-                        style={{ ...buttonStyle }}
-                        onClick={() =>
-                            push(
-                                `/editor/typeface/[id]`,
-                                `/editor/typeface/${font.id}`
-                            )
-                        }
-                    >
-                        Edit
-                    </button>
-                    <button
-                        style={{ ...buttonStyle }}
-                        onClick={() => handleDelete(font)}
-                    >
-                        Delete
-                    </button>
-                </div>
             </div>
 
             <NextLink
@@ -146,7 +85,6 @@ export const CardTypeface = ({ font }: CardTypefaceProps) => {
                 >
                     <p
                         style={{
-                            ...customFont,
                             fontSize: "1.5em",
                             padding: "calc(var(--grid-gap) / 2)",
                             fontFeatureSettings: "initial",
@@ -154,6 +92,7 @@ export const CardTypeface = ({ font }: CardTypefaceProps) => {
                             wordWrap: "break-word",
                             overflowWrap: "break-word",
                             margin: 0,
+                            ...generateFontStyle(font.default),
                         }}
                     >
                         {font.sampleText.value}

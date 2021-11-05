@@ -1,9 +1,12 @@
 import { LayoutMain } from "components/Layout";
 import { AxiosConfig } from "libs/api/axios-config";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { PayloadFont } from "@ponpub/font";
+import { BaseTypeface, PayloadFont } from "@ponpub/font";
 import { CSSProperties } from "react";
 import NextLink from "next/link";
+import { handleDeleteFont } from "libs/helpers/handle-delete-font";
+import { useRouter } from "next/router";
+import { generateFontStyle } from "libs/helpers/generate-font-style";
 
 interface ServerProps {
     id: string;
@@ -21,19 +24,26 @@ interface HeaderLink {
     asPath: string;
 }
 
+interface WaterFall extends BaseTypeface {
+    size: number;
+}
+
 const FONT_URI = "/api/v1/post/font";
 
 const waterFall = [16, 20, 24, 30, 36, 48, 56, 72, 80, 96, 100];
 
-const divStyle: CSSProperties = {
+const boxStyle: CSSProperties = {
     border: "1px solid",
     // boxShadow: "0 0 0.45em -0.05em var(--shadow-color)",
     padding: "0 calc(var(--grid-gap) / 1)",
     filter: "var(--filter-shadow)",
     backgroundColor: "var(--accents-1)",
+    // height: "calc(var(--grid-gap) * 4)",
+    // cursor: "pointer",
 };
 
 export default function Page(props: PageProps) {
+    const { push } = useRouter();
     const { font } = props;
     const { typefaces } = font;
     const headerLinks: Array<HeaderLink> = [
@@ -81,11 +91,11 @@ export default function Page(props: PageProps) {
                                     <a
                                         style={{
                                             border: "1px solid",
-                                            height: "calc(var(--grid-gap) * 4)",
                                             display: "inline-flex",
                                             alignItems: "center",
                                             fontFeatureSettings: `"ss01", "ss04", "tnum"`,
-                                            ...divStyle,
+                                            height: "calc(var(--grid-gap) * 4)",
+                                            ...boxStyle,
                                         }}
                                     >
                                         <span>{item.label}</span>
@@ -93,6 +103,32 @@ export default function Page(props: PageProps) {
                                 </NextLink>
                             </li>
                         ))}
+                        <li>
+                            <button
+                                style={{
+                                    fontSize: "inherit",
+                                    fontFamily: "inherit",
+                                    height: "calc(var(--grid-gap) * 4)",
+                                    cursor: "pointer",
+                                    ...boxStyle,
+                                }}
+                                onClick={() =>
+                                    handleDeleteFont({
+                                        // @ts-ignore
+                                        styleID: font.stylesheet,
+                                        typefacesID: font.typefaces.map(
+                                            // @ts-ignore
+                                            (item) => item.id
+                                        ),
+                                        fontID: font.id,
+                                    }).then(() =>
+                                        push("/post/typeface?view=grid")
+                                    )
+                                }
+                            >
+                                Delete
+                            </button>
+                        </li>
                     </ul>
                 </header>
 
@@ -108,18 +144,14 @@ export default function Page(props: PageProps) {
                     }}
                 >
                     {typefaces.map((item, i) => {
-                        const mergeArray = waterFall.map((source) => {
-                            return {
-                                size: source,
-                                family: item.name.family,
-                                fullName: item.name.fullName,
-                                fontWeight: item.info.weight,
-                                fontStyle:
-                                    item.info.style === "italic"
-                                        ? "italic"
-                                        : "normal",
-                            };
-                        });
+                        const mergeArray: Array<WaterFall> = waterFall.map(
+                            (source) => {
+                                return {
+                                    size: source,
+                                    ...item,
+                                };
+                            }
+                        );
 
                         return (
                             <li
@@ -135,9 +167,9 @@ export default function Page(props: PageProps) {
                             >
                                 <div
                                     style={{
-                                        fontFamily: `"${item.name.fullName}", var(--font-sans)`,
                                         display: "inline-flex",
-                                        ...divStyle,
+                                        ...boxStyle,
+                                        ...generateFontStyle(item),
                                     }}
                                 >
                                     <span style={{ fontSize: "2em" }}>
@@ -154,47 +186,39 @@ export default function Page(props: PageProps) {
                                         width: "100%",
                                     }}
                                 >
-                                    {mergeArray.map((arrItem, i) => (
-                                        <div
-                                            key={i}
-                                            style={{
-                                                fontFamily: `"${arrItem.fullName}", var(--font-sans)`,
-                                                fontWeight: arrItem.fontWeight,
-                                                fontStyle: arrItem.fontStyle,
-                                                display: "flex",
-                                                gap: "calc(var(--grid-gap) / 2)",
-                                                width: "100%",
-                                            }}
-                                        >
-                                            <div style={divStyle}>
-                                                <span
-                                                    style={{
-                                                        fontSize: `calc(${arrItem.size}px)`,
-                                                        overflow: "hidden",
-                                                        whiteSpace: "nowrap",
-                                                        textOverflow:
-                                                            "ellipsis",
-                                                        display: "block",
-                                                        maxWidth: "100%",
-                                                        // fontFeatureSettings: `"tnum", "case", "onum"`,
-                                                    }}
-                                                >
-                                                    {arrItem.size}px
-                                                </span>
-                                            </div>
+                                    {mergeArray.map(
+                                        ({ size, ...arrItem }, i) => (
                                             <div
+                                                key={i}
                                                 style={{
-                                                    ...divStyle,
-                                                    overflow: "hidden",
-                                                    whiteSpace: "nowrap",
-                                                    textOverflow: "ellipsis",
-                                                    display: "block",
-                                                    maxWidth: "100%",
+                                                    display: "flex",
+                                                    gap: "calc(var(--grid-gap) / 2)",
+                                                    width: "100%",
+                                                    ...generateFontStyle(
+                                                        arrItem
+                                                    ),
                                                 }}
                                             >
-                                                <span
+                                                <div style={boxStyle}>
+                                                    <span
+                                                        style={{
+                                                            fontSize: `calc(${size}px)`,
+                                                            overflow: "hidden",
+                                                            whiteSpace:
+                                                                "nowrap",
+                                                            textOverflow:
+                                                                "ellipsis",
+                                                            display: "block",
+                                                            maxWidth: "100%",
+                                                            // fontFeatureSettings: `"tnum", "case", "onum"`,
+                                                        }}
+                                                    >
+                                                        {size}px
+                                                    </span>
+                                                </div>
+                                                <div
                                                     style={{
-                                                        fontSize: `calc(${arrItem.size}px)`,
+                                                        ...boxStyle,
                                                         overflow: "hidden",
                                                         whiteSpace: "nowrap",
                                                         textOverflow:
@@ -203,11 +227,24 @@ export default function Page(props: PageProps) {
                                                         maxWidth: "100%",
                                                     }}
                                                 >
-                                                    {arrItem.fullName}
-                                                </span>
+                                                    <span
+                                                        style={{
+                                                            fontSize: `calc(${size}px)`,
+                                                            overflow: "hidden",
+                                                            whiteSpace:
+                                                                "nowrap",
+                                                            textOverflow:
+                                                                "ellipsis",
+                                                            display: "block",
+                                                            maxWidth: "100%",
+                                                        }}
+                                                    >
+                                                        {arrItem.name.fullName}
+                                                    </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
+                                        )
+                                    )}
                                 </div>
                             </li>
                         );
