@@ -3,6 +3,8 @@ import { CSSProperties, useState } from "react";
 import { useTheme } from "next-themes";
 import { SVGIcon } from "components/Utils/SVGIcon";
 import { useAside } from "libs/context/ContextAside";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 const buttonStyle: CSSProperties = {
     appearance: "none",
@@ -72,6 +74,8 @@ const SelectorTheme = () => {
 export const AsideFooter = () => {
     const [state, setState] = useState(false);
     const { asideState } = useAside();
+
+    const { reload } = useRouter();
     return (
         <footer className={styles.footer} data-aside={asideState}>
             <div className={styles.setting_container}>
@@ -94,6 +98,16 @@ export const AsideFooter = () => {
                     </ul>
                 )}
             </div>
+            <button
+                onClick={() =>
+                    axios
+                        .post("/api/v1/auth/sign-out")
+                        .then(() => reload())
+                        .catch((err) => console.error(err))
+                }
+            >
+                Sign Out
+            </button>
         </footer>
     );
 };

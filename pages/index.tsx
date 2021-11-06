@@ -1,22 +1,16 @@
-import axios from "axios";
-import useSWR from "swr";
-import { GUEST, UserPayload } from "@ponpub/user";
+import type { PageProps } from "global";
+import NextImage from "next/image";
 import { LayoutMain } from "components/Layout";
 
-interface NewData extends UserPayload {
-    api_version: number;
-}
-
-const fetcher = (uri: string) => axios.get(uri).then((res) => res.data);
-export default function Page() {
-    const uri = "/api/v1/test";
-    const { data } = useSWR<NewData>(uri, fetcher, {
-        fallbackData: { api_version: 1, ...GUEST },
-    });
-
+export default function Page(props: PageProps) {
+    const { user } = props;
     return (
         <LayoutMain>
-            <pre>{JSON.stringify(data, null, 2)}</pre>
+            <div>
+                <div>{user.name}</div>
+                <NextImage src={user.image!} width={24} height={24} />
+            </div>
+            <pre>{JSON.stringify({ user: props.user }, null, 2)}</pre>
         </LayoutMain>
     );
 }
