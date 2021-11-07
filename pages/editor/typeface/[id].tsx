@@ -7,6 +7,7 @@ import NextLink from "next/link";
 import { handleDeleteFont } from "libs/helpers/handle-delete-font";
 import { useRouter } from "next/router";
 import { generateFontStyle } from "libs/helpers/generate-font-style";
+import { HeaderPage } from "components/Header";
 
 interface ServerProps {
     id: string;
@@ -34,12 +35,9 @@ const waterFall = [16, 20, 24, 30, 36, 48, 56, 72, 80, 96, 100];
 
 const boxStyle: CSSProperties = {
     border: "1px solid",
-    // boxShadow: "0 0 0.45em -0.05em var(--shadow-color)",
     padding: "0 calc(var(--grid-gap) / 1)",
-    filter: "var(--filter-shadow)",
+    boxShadow: "var(--geist-box-shadow)",
     backgroundColor: "var(--accents-1)",
-    // height: "calc(var(--grid-gap) * 4)",
-    // cursor: "pointer",
 };
 
 export default function Page(props: PageProps) {
@@ -66,16 +64,7 @@ export default function Page(props: PageProps) {
                     font.subFamily && `- ${font.subFamily}`
                 }`}
             >
-                <header
-                    style={{
-                        position: "sticky",
-                        top: "calc(var(--grid-gap) * 2)",
-                        zIndex: 1000,
-                        display: "flex",
-                        gap: "calc(var(--grid-gap) / 2)",
-                        marginBottom: "calc(var(--grid-gap) / 2)",
-                    }}
-                >
+                <HeaderPage>
                     <ul
                         style={{
                             listStyle: "none",
@@ -130,12 +119,12 @@ export default function Page(props: PageProps) {
                             </button>
                         </li>
                     </ul>
-                </header>
+                </HeaderPage>
 
                 <ul
                     style={{
                         listStyle: "none",
-                        padding: "calc(var(--grid-gap) * 2) 0",
+                        padding: "0 0 calc(var(--grid-gap) * 2) 0",
                         margin: 0,
                         display: "flex",
                         flexDirection: "column",
